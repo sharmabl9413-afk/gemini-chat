@@ -16,6 +16,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+      - name: Prepare www folder
+        run: |
+          mkdir -p www
+          if [ -f index.html ]; then cp index.html www/index.html; elif [ -f chat.html ]; then cp chat.html www/index.html; else echo "index.html ya chat.html repo mein nahi hai"; ls -la; exit 1; fi
       - name: Capacitor setup
         run: |
           npm init -y
